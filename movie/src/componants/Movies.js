@@ -5,7 +5,7 @@ import Pagination from './Pagination';
 function Movies()
 {
     return(
-        <div> 
+        <div className="border-l-2 py-2 px-2 w-4/5 h-screen "> 
             <InputBox></InputBox>
             <MoviesTable></MoviesTable>
             <Pagination></Pagination>
@@ -14,4 +14,4 @@ function Movies()
     )
 }
 
-export default Movies
+export default Movies;

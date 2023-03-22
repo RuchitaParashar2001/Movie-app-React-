@@ -3,8 +3,7 @@ import Movies from "./Movies";
 import Genre from "./Genre";
 function Main(){
     return(
-    <div>
-        I am main page
+    <div className="flex h-screen">
         <Genre/>
         <Movies></Movies>
         
