@@ -1,13 +1,14 @@
 import React from "react";
 import { useState } from "react";
 
-function InputBox()
+function InputBox(props)
 {
     let [text,updateText] = useState("");
     let [counter,updateCounter] = useState(0);
 
     const HandleTextChange = function(e){
         updateText(e.target.value);
+        props.HandlerForInputText(e.target.value);
     }
 
     const HandleCounter = function(e){

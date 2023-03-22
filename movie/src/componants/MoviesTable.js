@@ -1,8 +1,9 @@
 import React from "react";
 import { useState,useEffect } from "react";
 
-function MoviesTable()
+function MoviesTable(props)
 {
+
     const [isLoading,setLoading] = useState(true);
     const [content,setContent] = useState([]);
 useEffect(()=>{
@@ -16,6 +17,16 @@ useEffect(()=>{
     }
     fetchData();
 },[])
+
+let filteredContent = [];
+if(props.searchVal){
+    filteredContent = content.filter((movie)=>{
+        return movie.Title.toLowerCase().includes(props.searchVal.toLowerCase());
+    });
+}
+else{
+    filteredContent = content;
+}
     return(
         <div className="border-2 m-3">
             {isLoading==true? <div>Loading...</div> : 
@@ -33,7 +44,7 @@ useEffect(()=>{
 
                 <tbody>
                        {
-                        content.map((movie, idx)=>{
+                        filteredContent.map((movie, idx)=>{
                             return(
                                 <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700 hover:bg-gray-200  text-gray-900">
                                 <td className="px-6 py-4">{idx+1}</td>
