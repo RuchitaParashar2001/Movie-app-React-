@@ -18,6 +18,14 @@ useEffect(()=>{
     fetchData();
 },[])
 
+const deleteButtonClicked = function(idToBedeleted){
+    let restOfMovies = content.filter((mvi)=>{
+        return mvi.imdbID!==idToBedeleted;
+    });
+
+    setContent(restOfMovies);
+}
+
 let filteredContent = [];
 /* ---------------------------------------------for filtering movies acc to search bar-------------------- */
 
@@ -78,13 +86,13 @@ else{
                         
                         filteredContent.map((movie, idx)=>{
                             return(
-                                <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700 hover:bg-gray-200  text-gray-900">
+                                <tr key={movie.imdbID} className="bg-white border-b dark:bg-gray-900 dark:border-gray-700 hover:bg-gray-200  text-gray-900">
                                 <td className="px-6 py-4">{idx+1}</td>
                                 <td className="px-6 py-4">{movie.Title}</td>
                                 <td className="px-6 py-4">{movie.Genre}</td>
                                 <td className="px-6 py-4">{Math.floor(Math.random()*10)+1}</td>
                                 <td className="px-6 py-4">{movie.imdbRating}</td>
-                                <td className="px-6 py-4"><button className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded ml-2">Delete</button></td>
+                                <td className="px-6 py-4"><button className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded ml-2" onClick={()=>{ deleteButtonClicked(movie.imdbID);}}>Delete</button></td>
                             </tr>
                             )
                         })

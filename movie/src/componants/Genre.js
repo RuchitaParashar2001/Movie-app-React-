@@ -29,7 +29,7 @@ function HandleGenreClick(e){
                 {
                     content.map((gen,idx)=>{
                         return(
-                            <div className="border-2 text-center h-10 hover:bg-gray-200 py-1 border-t-0 cursor-pointer" onClick={HandleGenreClick}> {gen.name} </div>
+                            <div key={idx} className="border-2 text-center h-10 hover:bg-gray-200 py-1 border-t-0 cursor-pointer" onClick={HandleGenreClick}> {gen.name} </div>
                         )
                     })
                 }
