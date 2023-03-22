@@ -19,6 +19,8 @@ useEffect(()=>{
 },[])
 
 let filteredContent = [];
+/* ---------------------------------------------for filtering movies acc to search bar-------------------- */
+
 if(props.searchVal){
     filteredContent = content.filter((movie)=>{
         return movie.Title.toLowerCase().includes(props.searchVal.toLowerCase());
@@ -27,6 +29,35 @@ if(props.searchVal){
 else{
     filteredContent = content;
 }
+/* -------------------------------------------------------For filtering according to Genre---------------------------------------------------------- */
+
+// console.log(props.counterVal);
+if(props.genreName!="All Genre")
+{
+    filteredContent = filteredContent.filter((movie)=>{
+        // console.log(typeof(movie.Genre));
+        let genres = movie.Genre.toLowerCase();
+        let propGenre = props.genreName.toLowerCase();
+        console.log(genres.includes(propGenre));
+        return genres.includes(propGenre);   // note- inlcudes() method binaa toLowercase() ke nahi chalega
+    })
+}
+else{
+    //do nothing
+}
+
+/*-----------------------------------------------------------for counter------------------------------------------------------------6---------- */
+if(props.counterVal>0){
+    filteredContent = filteredContent.slice(0,props.counterVal);
+}
+else{
+   //do nothing
+}
+
+
+//  console.log("moviestable: "+props.genreName);
+
+
     return(
         <div className="border-2 m-3">
             {isLoading==true? <div>Loading...</div> : 
@@ -44,6 +75,7 @@ else{
 
                 <tbody>
                        {
+                        
                         filteredContent.map((movie, idx)=>{
                             return(
                                 <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700 hover:bg-gray-200  text-gray-900">

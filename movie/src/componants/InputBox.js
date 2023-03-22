@@ -13,6 +13,7 @@ function InputBox(props)
 
     const HandleCounter = function(e){
         updateCounter(e.target.value);
+        props.HandlerForCounter(e.target.value);
         
     }
     return(
